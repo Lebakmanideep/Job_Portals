@@ -16,7 +16,7 @@ public class JobsServiceImpl implements JobsService{
         this.JobsRepository = theJobsRepository;
     }
     @Override
-    public List<Jobs> listJobs() {
+    public List<Jobs> findAll() {
         return JobsRepository.findAll();
     }
 
@@ -35,7 +35,7 @@ public class JobsServiceImpl implements JobsService{
     }
 
     @Override
-    public void addJob(Jobs job) {
+    public void save(Jobs job) {
         JobsRepository.save(job);
     }
 
