@@ -2,10 +2,7 @@ package org.studyeasy.jobsportal.Rest;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.studyeasy.jobsportal.Entity.Jobs;
 import org.studyeasy.jobsportal.Services.JobsService;
 
@@ -40,7 +37,7 @@ public class JobsRestController {
     }
 
     // add mapping for POST /jobs - add new job
-    @GetMapping("/jobs")
+    @PostMapping("/jobs")
     public Jobs addJob(@RequestBody Jobs job) {
         // also just in case the pass an id in JSON ... set id to 0
         // this is to force a save of new item ... instead of update
@@ -51,14 +48,14 @@ public class JobsRestController {
 
     // add mapping for PUT /jobs - update existing job
 
-    @GetMapping("/jobs")
+    @PutMapping("/jobs")
     public Jobs updateJob(@RequestBody Jobs job) {
         jobsService.save(job);
         return job;
     }
 
     // add mapping for DELETE /jobs/{jobId} - delete job
-
+    @DeleteMapping
     public String deleteJob(int id) {
         Jobs job = jobsService.getJob(id);
         // throw exception if null
